@@ -1,128 +1,148 @@
 body {
-    font-family: 'Lato', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Added Lato for a slightly softer feel */
+    font-family: 'Lato', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
     color: #333;
-    line-height: 1.7; /* Slightly increased line height for readability */
-    background-color: #f9f9f9; /* Lighter, softer background */
+    line-height: 1.7;
+    background-color: #f9f9f9;
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+    overflow-x: hidden; /* Prevent horizontal scrollbars from animations */
 }
-
 .container {
     width: 90%;
-    max-width: 1100px; /* Slightly narrower max-width for better readability on large screens */
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 30px 15px; /* Added horizontal padding */
+    padding: 30px 15px;
     box-sizing: border-box;
 }
-
 h1, h2, h3, h4, h5 {
     color: #2c3e50;
     margin-bottom: 15px;
     line-height: 1.3;
 }
-
 h1 {
-    font-size: 2.8em; /* Slightly larger */
+    font-size: 2.8em;
 }
-
 h2 {
     font-size: 2.2em;
-    margin-bottom: 30px; /* More space below section titles */
+    margin-bottom: 30px;
     text-align: center;
-    padding-top: 30px; /* Space above title */
+    padding-top: 30px;
 }
-
 h3 {
     font-size: 1.7em;
     margin-bottom: 15px;
 }
-
 h4 {
     font-size: 1.3em;
     margin-bottom: 10px;
 }
-
 h5 {
     font-size: 1.1em;
     margin-bottom: 8px;
-    color: #e67e22; /* Highlight pricing tiers */
+    color: #e67e22;
 }
-
 a {
     color: #3498db;
     text-decoration: none;
     transition: color 0.3s ease;
 }
-
 a:hover {
-    color: #2980b9; /* Slightly darker on hover */
+    color: #2980b9;
     text-decoration: underline;
 }
-
 .cta-button {
     display: inline-block;
-    background-color: #e67e22; /* Primary call to action color */
+    background-color: #e67e22;
     color: white;
-    padding: 14px 30px; /* Slightly larger button */
+    padding: 14px 30px;
     border-radius: 5px;
     font-weight: bold;
     font-size: 1.1em;
     margin-top: 25px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 8px rgba(230,126,34,0.3); /* Subtle shadow for button */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(230,126,34,0.3);
 }
-
 .cta-button:hover {
     background-color: #d35400;
     text-decoration: none;
-    transform: translateY(-2px); /* Slight lift on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(230,126,34,0.4);
 }
-
+/* --- Animations --- */
+/* Fade In Up - Elements appear from bottom */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* Fade In - Elements just fade in */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+/* Slide In Left - For elements entering from the left */
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+/* Slide In Right - For elements entering from the right */
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+/* --- Utility for triggering animations --- */
+.animate-on-scroll {
+    opacity: 0; /* Initially hidden */
+    transform: translateY(30px); /* Start lower */
+    animation-fill-mode: forwards; /* Keep the end state of the animation */
+}
+/* You can add other transforms here like: */
+/* .animate-on-scroll.slide-left { transform: translateX(-30px); } */
+/* .animate-on-scroll.slide-right { transform: translateX(30px); } */
 /* --- Header & Navigation --- */
 header {
-    background-color: #2c3e50; /* Dark, professional header */
+    background-color: #2c3e50;
     color: white;
     padding: 15px 0;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.2); /* Stronger shadow */
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
 }
-
 header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 15px; /* Adjust padding for header */
+    padding: 10px 15px;
 }
-
 .logo {
-    font-size: 2em; /* Larger logo */
+    font-size: 2em;
     font-weight: bold;
     color: white;
-    letter-spacing: 0.5px; /* Slight spacing for logo */
+    letter-spacing: 0.5px;
+    transition: transform 0.3s ease;
 }
-
+.logo:hover {
+    transform: scale(1.05);
+}
 nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
 }
-
 nav ul li {
-    margin-left: 30px; /* More space between nav items */
+    margin-left: 30px;
 }
-
 nav ul li a {
     color: white;
-    font-weight: 600; /* Semi-bold for nav links */
+    font-weight: 600;
     padding: 8px 0;
-    position: relative; /* For underline effect */
+    position: relative;
     transition: color 0.3s ease;
 }
-
-nav ul li a::after { /* Underline effect on hover */
+nav ul li a::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -132,48 +152,49 @@ nav ul li a::after { /* Underline effect on hover */
     background-color: #3498db;
     transition: width 0.3s ease;
 }
-
 nav ul li a:hover {
     color: #ecf0f1;
     text-decoration: none;
 }
-
 nav ul li a:hover::after {
     width: 100%;
 }
-
 .language-selector {
     display: flex;
     align-items: center;
-    font-size: 0.95em; /* Slightly larger */
+    font-size: 0.95em;
 }
-
 .language-selector p {
     margin: 0 8px 0 0;
     font-weight: 500;
 }
-
 .language-selector a {
     color: white;
     font-weight: bold;
     margin: 0 5px;
-    border-bottom: 1px dashed white; /* Dashed underline for language links */
+    border-bottom: 1px dashed white;
+    transition: color 0.3s ease, border-bottom-color 0.3s ease;
 }
-
 .language-selector a:hover {
     color: #ecf0f1;
     border-bottom-color: #ecf0f1;
 }
-
-/* --- Hero Section --- */
+/* --- Hero Section with Animated Gradient Background --- */
 .hero {
-    background: url('images/hero-bg.jpg') no-repeat center center/cover; /* Placeholder - add your own image */
+    background: linear-gradient(-45deg, #2c3e50, #e73c7e, #23a6d5, #23d5ab); /* Example gradient */
+    background-size: 250% 250%; /* Adjusted size for smoother movement */
+    animation: gradientBG 20s ease infinite; /* Slower, smoother animation */
     color: white;
     text-align: center;
-    padding: 120px 0; /* More padding */
+    padding: 120px 0;
     position: relative;
+    overflow: hidden;
 }
-
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 .hero::before {
     content: '';
     position: absolute;
@@ -181,234 +202,217 @@ nav ul li a:hover::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Darker overlay */
+    background: rgba(0, 0, 0, 0.55); /* Slightly less dark overlay */
+    z-index: 0;
 }
-
 .hero-content {
     position: relative;
     z-index: 1;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInFromBottom 1s ease-out forwards 0.5s;
 }
-
 .hero h1 {
     color: white;
-    font-size: 3.8em; /* Larger hero title */
+    font-size: 3.8em;
     margin-bottom: 25px;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.5); /* Text shadow for better readability */
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
 }
-
 .hero p {
-    font-size: 1.4em; /* Larger sub-headline */
+    font-size: 1.4em;
     margin-bottom: 40px;
-    max-width: 700px; /* Limit width for better reading */
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
     text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 }
-
+.cta-button.hero-cta {
+    animation: fadeInFromBottom 1s ease-out forwards 1s;
+    opacity: 0;
+    transform: translateY(20px);
+}
 /* --- Sections --- */
 section {
-    padding: 60px 0; /* More vertical spacing between sections */
+    padding: 60px 0;
+    position: relative;
+    overflow: hidden; /* Important for child animations */
 }
-
 section:nth-child(even) {
-    background-color: #ffffff; /* White background for even sections */
+    background-color: #ffffff;
 }
 section:nth-child(odd) {
-    background-color: #f9f9f9; /* Light grey for odd sections */
+    background-color: #f9f9f9;
 }
-
 /* --- Services Overview --- */
 .services-overview {
-    background-color: #ffffff; /* Ensure it has a distinct background */
+    background-color: #ffffff;
 }
-
 .service-icons {
     display: flex;
-    justify-content: center; /* Center items */
-    gap: 30px; /* Space between items */
+    justify-content: center;
+    gap: 30px;
     flex-wrap: wrap;
     margin-top: 40px;
 }
-
 .service-item {
-    flex-basis: 280px; /* Fixed base width */
-    padding: 30px 25px; /* More padding inside items */
+    flex-basis: 280px;
+    padding: 30px 25px;
     background-color: white;
-    border-radius: 10px; /* Slightly more rounded corners */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Softer, more pronounced shadow */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Animation applied via JS for scroll triggering */
 }
-
 .service-item:hover {
-    transform: translateY(-8px); /* Lift on hover */
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15); /* Stronger shadow on hover */
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
-
 .service-item h3 {
     color: #e67e22;
     margin-bottom: 15px;
     font-size: 1.5em;
 }
 .service-item p {
-    font-size: 1.05em; /* Slightly larger text */
+    font-size: 1.05em;
 }
-
 /* --- Portfolio --- */
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Wider min-width */
-    gap: 30px; /* More gap */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
     margin-top: 40px;
 }
-
 .portfolio-item {
     background-color: white;
-    border-radius: 10px; /* Rounded corners */
+    border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex; /* Use flexbox for layout within item */
-    flex-direction: column; /* Stack image and content */
+    display: flex;
+    flex-direction: column;
+    /* Animation applied via JS for scroll triggering */
 }
-
 .portfolio-item:hover {
     transform: translateY(-8px);
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
-
 .portfolio-item img {
     width: 100%;
-    height: 350px; /* Slightly taller image */
+    height: 350px;
     object-fit: cover;
     display: block;
+    transition: transform 0.4s ease;
 }
-
+.portfolio-item:hover img {
+    transform: scale(1.05);
+}
 .portfolio-item-content {
     padding: 25px;
-    flex-grow: 1; /* Allow content to take available space */
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center content vertically */
+    justify-content: center;
 }
-
 .portfolio-item-content h4 {
     margin-top: 0;
     color: #2c3e50;
     font-size: 1.4em;
 }
-
 .portfolio-item-content p {
     font-size: 1em;
-    margin-bottom: 15px; /* Space between paragraphs */
+    margin-bottom: 15px;
 }
 .portfolio-item-content p:last-child {
-    margin-bottom: 0; /* No margin for the last paragraph */
+    margin-bottom: 0;
 }
-
-
 /* --- About Section --- */
 .about-content {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 40px; /* More gap */
+    gap: 40px;
 }
-
 .about-image {
     flex: 1;
-    min-width: 280px; /* Min width */
+    min-width: 280px;
     text-align: center;
 }
-
 .about-image img {
     max-width: 100%;
     height: auto;
-    border-radius: 15px; /* More rounded */
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* Stronger shadow */
-    border: 5px solid #ffffff; /* White border for definition */
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border: 5px solid #ffffff;
 }
-
 .about-text {
     flex: 2;
     min-width: 320px;
 }
-
 .about-text p {
-    margin-bottom: 20px; /* More space between paragraphs */
+    margin-bottom: 20px;
     font-size: 1.1em;
 }
 .about-text a.cta-button {
-    margin-top: 30px; /* More space above button */
+    margin-top: 30px;
 }
-
 /* --- Contact Section --- */
 .contact-form-container {
-    max-width: 750px; /* Slightly wider container */
+    max-width: 750px;
     margin: 40px auto;
     background-color: white;
-    padding: 40px; /* More padding */
+    padding: 40px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
-
 .contact-form-container h2 {
     text-align: center;
     margin-bottom: 35px;
 }
-
 .contact-form label {
     display: block;
     margin-bottom: 10px;
     font-weight: bold;
     color: #333;
 }
-
 .contact-form input,
 .contact-form textarea {
     width: 100%;
-    padding: 15px; /* Larger input fields */
+    padding: 15px;
     margin-bottom: 25px;
-    border: 1px solid #ddd; /* Lighter border */
+    border: 1px solid #ddd;
     border-radius: 5px;
     box-sizing: border-box;
-    font-size: 1.1em; /* Larger font in inputs */
+    font-size: 1.1em;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
-
 .contact-form input:focus,
 .contact-form textarea:focus {
     border-color: #3498db;
     outline: none;
-    box-shadow: 0 0 0 3px rgba(52,152,219,0.2); /* Focus ring */
+    box-shadow: 0 0 0 3px rgba(52,152,219,0.2);
 }
-
 .contact-form textarea {
-    min-height: 180px; /* Taller textarea */
+    min-height: 180px;
     resize: vertical;
 }
-
 .contact-form button[type="submit"] {
-    width: auto; /* Button width based on content */
+    width: auto;
     padding: 15px 35px;
     font-size: 1.15em;
 }
-
 .contact-info {
     text-align: center;
     margin-top: 40px;
     font-size: 1.1em;
 }
-
 .contact-info p {
     margin-bottom: 12px;
 }
-
 .contact-info a {
     font-weight: bold;
     color: #3498db;
 }
-
 /* --- Pricing Options (for Services Page) --- */
 .pricing-options {
     display: flex;
@@ -417,173 +421,169 @@ section:nth-child(odd) {
     flex-wrap: wrap;
     margin-top: 40px;
 }
-
 .pricing-box {
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     padding: 30px;
-    text-align: left; /* Align text left within box */
-    flex-basis: 300px; /* Base width */
+    text-align: left;
+    flex-basis: 300px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Push button to bottom if needed */
+    justify-content: space-between;
+    /* Animation applied via JS for scroll triggering */
 }
-
 .pricing-box:hover {
     transform: translateY(-8px);
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
-
 .pricing-box ul {
     list-style: disc;
     padding-left: 25px;
     margin-top: 15px;
     margin-bottom: 25px;
 }
-
 .pricing-box li {
     margin-bottom: 8px;
 }
-
 .pricing-box h5 {
     margin-top: 0;
     color: #e67e22;
     font-size: 1.4em;
-    text-align: center; /* Center tier name */
+    text-align: center;
 }
-
 .pricing-box p {
     font-size: 1em;
     margin-bottom: 15px;
 }
-
 .pricing-box a.cta-button {
-    margin-top: 30px; /* Space above button */
-    width: 100%; /* Make button full width within box */
+    margin-top: 30px;
+    width: 100%;
     text-align: center;
 }
-
-
 /* --- Footer --- */
 footer {
     background-color: #2c3e50;
-    color: #f4f4f4; /* Lighter text for footer */
+    color: #f4f4f4;
     text-align: center;
-    padding: 30px 0; /* More padding */
-    margin-top: 60px; /* More space above footer */
+    padding: 30px 0;
+    margin-top: 60px;
     font-size: 0.95em;
 }
-
 /* --- Responsive Design --- */
 @media (max-width: 992px) {
-    .container {
-        width: 95%;
-    }
-    .hero h1 {
-        font-size: 3em;
-    }
-    .hero p {
-        font-size: 1.2em;
-    }
-    .service-item, .pricing-box {
-        flex-basis: calc(50% - 20px); /* Two columns on medium screens */
-    }
-    .portfolio-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
+    .container { width: 95%; }
+    .hero h1 { font-size: 3em; }
+    .hero p { font-size: 1.2em; }
+    .service-item, .pricing-box { flex-basis: calc(50% - 20px); }
+    .portfolio-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
 }
-
 @media (max-width: 768px) {
-    header .container {
-        flex-direction: column;
-        align-items: flex-start; /* Align items to the left */
-    }
-
-    .logo {
-        margin-bottom: 10px;
-    }
-
-    nav ul {
-        flex-direction: column;
-        width: 100%; /* Take full width */
-    }
-
-    nav ul li {
-        margin: 8px 0; /* Stacked list */
-        width: 100%;
-        text-align: left; /* Align nav items left */
-    }
-
-    nav ul li a::after {
-        width: 0; /* Remove hover effect on mobile for cleaner look */
-    }
-
-    .language-selector {
-        margin-top: 15px;
-        width: 100%;
-        justify-content: flex-start; /* Align language selector left */
-    }
-
-    .hero h1 {
-        font-size: 2.5em;
-    }
-    .hero p {
-        font-size: 1.1em;
-    }
-
-    .service-item, .pricing-box {
-        flex-basis: 80%; /* Stack them on smaller screens */
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .about-image {
-        margin-bottom: 20px;
-    }
-
-    .portfolio-grid {
-        grid-template-columns: 1fr; /* Single column on small screens */
-    }
+    header .container { flex-direction: column; align-items: flex-start; }
+    .logo { margin-bottom: 10px; }
+    nav ul { flex-direction: column; width: 100%; }
+    nav ul li { margin: 8px 0; width: 100%; text-align: left; }
+    nav ul li a::after { width: 0; } /* Disable underline on mobile */
+    .language-selector { margin-top: 15px; width: 100%; justify-content: flex-start; }
+    .hero h1 { font-size: 2.5em; }
+    .hero p { font-size: 1.1em; }
+    .service-item, .pricing-box { flex-basis: 80%; margin-left: auto; margin-right: auto; }
+    .about-image { margin-bottom: 20px; }
+    .portfolio-grid { grid-template-columns: 1fr; }
 }
-
 @media (max-width: 480px) {
     h1 { font-size: 2.2em; }
     h2 { font-size: 1.8em; }
     h3 { font-size: 1.4em; }
-
-    .hero h1 {
-        font-size: 2em;
+    .hero h1 { font-size: 2em; }
+    .hero p { font-size: 1em; }
+    .cta-button { padding: 12px 25px; font-size: 1em; }
+    .contact-form-container { padding: 25px; }
+    .contact-form input, .contact-form textarea { font-size: 1em; }
+    .contact-form button[type="submit"] { width: 100%; }
+    .pricing-options { gap: 20px; }
+    .service-item, .pricing-box { flex-basis: 95%; }
+}
+/* --- New Animations for Scroll Triggering --- */
+/* Define keyframes for elements appearing on scroll */
+@keyframes slideFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px); /* Start slightly lower */
     }
-    .hero p {
-        font-size: 1em;
-    }
-    .cta-button {
-        padding: 12px 25px;
-        font-size: 1em;
-    }
-
-    .contact-form-container {
-        padding: 25px;
-    }
-
-    .contact-form input, .contact-form textarea {
-        font-size: 1em;
-    }
-
-    .contact-form button[type="submit"] {
-        width: 100%; /* Full width button on smallest screens */
-    }
-
-    .pricing-options {
-        gap: 20px;
-    }
-    .service-item, .pricing-box {
-        flex-basis: 95%; /* Almost full width on very small screens */
+    to {
+        opacity: 1;
+        transform: translateY(0); /* End at normal position */
     }
 }
-
+/* Apply animation class to elements that should animate */
+.animate-on-scroll {
+    opacity: 0; /* Start hidden */
+    transform: translateY(30px); /* Start lower */
+    animation-fill-mode: forwards; /* Keep the end state */
+    animation-duration: 0.8s; /* Duration of the animation */
+    animation-timing-function: ease-out; /* Smooth timing */
+    animation-delay: 0s; /* Delay can be set per element via JS */
+}
+/* --- Mobile Menu Toggle Styles --- */
+.menu-toggle {
+    display: none; /* Hidden by default, shown only on mobile via JS */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    margin-top: 5px; /* Adjust spacing */
+}
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin-bottom: 5px;
+    transition: all 0.3s ease-in-out;
+}
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+/* Show menu toggle on small screens */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+    nav ul {
+        display: none; /* Hide nav initially on mobile */
+        flex-direction: column;
+        width: 100%;
+        background-color: #2c3e50; /* Background for the dropdown menu */
+        position: absolute;
+        top: 70px; /* Position below header */
+        left: 0;
+        padding: 20px;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    }
+    nav ul.active {
+        display: flex; /* Show when active */
+    }
+    nav ul li {
+        margin: 10px 0;
+        width: 100%;
+        text-align: left;
+    }
+    nav ul li a {
+        padding: 10px;
+        display: block; /* Make links block for easier tapping */
+    }
+    nav ul li a::after {
+        display: none; /* Remove underline effect on mobile */
+    }
+}
 .hero {
     /* Keep background-size, but adjust animation properties */
     background: linear-gradient(-45deg, #2c3e50, #e73c7e, #23a6d5, #23d5ab); /* Example gradient */
