@@ -1,61 +1,34 @@
 .hero {
-    /* Your existing hero styles here, modified for gradient */
-    /* Remove or comment out the background-image line if you don't want an image */
-    background: linear-gradient(-45deg, #2c3e50, #e73c7e, #23a6d5, #23d5ab); /* Example gradient - feel free to change colors! */
-    background-size: 400% 400%; /* Crucial for the movement effect */
-    animation: gradientBG 15s ease infinite; /* Apply the animation */
+    /* Keep background-size, but adjust animation properties */
+    background: linear-gradient(-45deg, #2c3e50, #e73c7e, #23a6d5, #23d5ab); /* Example gradient */
+    background-size: 250% 250%; /* Reduced size for less intense movement */
+    animation: gradientBG 20s ease infinite; /* Slower animation (20s) and smoother timing */
     color: white;
     text-align: center;
     padding: 120px 0;
-    position: relative; /* Needed for z-index stacking */
-    overflow: hidden; /* Essential for animations */
+    position: relative;
+    overflow: hidden;
 }
-/* Keyframes for the gradient animation */
+/* Keyframes for the gradient animation - adjusted for smoother movement */
 @keyframes gradientBG {
     0% {
-        background-position: 0% 50%; /* Start position */
+        background-position: 0% 50%;
     }
     50% {
-        background-position: 100% 50%; /* Middle position */
+        background-position: 100% 50%;
     }
     100% {
-        background-position: 0% 50%; /* Back to start */
+        background-position: 0% 50%;
     }
 }
 .hero::before {
-    /* Keep this overlay for text readability */
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Your dark overlay */
-    z-index: 0; /* Overlay should be behind content, but above the gradient */
-}
-.hero-content {
-    position: relative; /* Ensure content is above overlay and gradient */
-    z-index: 1;
-    opacity: 0; /* Start hidden for fade-in */
-    transform: translateY(20px); /* Start slightly down */
-    animation: fadeInFromBottom 1s ease-out forwards 0.5s; /* Animation delay */
-}
-.hero h1 {
-    color: white;
-    font-size: 3.8em;
-    margin-bottom: 25px;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-}
-.hero p {
-    font-size: 1.4em;
-    margin-bottom: 40px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-    text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-}
-.cta-button.hero-cta {
-    animation: fadeInFromBottom 1s ease-out forwards 1s;
-    opacity: 0;
-    transform: translateY(20px);
+    /* Slightly adjust overlay for better contrast if needed */
+    background: rgba(0, 0, 0, 0.55); /* Slightly less dark */
+    z-index: 0;
 }
